@@ -55,4 +55,18 @@ public class MainExtenstion implements Serializable {
         return (List<T>) extent;
     }
 
+    public static int getCount(Class theClass){
+        int count = 0;
+        List<MainExtenstion> extent = null;
+        if(allExtents.containsKey(theClass)){
+            extent = allExtents.get(theClass);
+            for(MainExtenstion ext : extent){
+                count++;
+            }
+        }else {
+            System.out.println("Brak klasy: " + theClass.toString());
+        }
+        return count;
+    }
+
 }

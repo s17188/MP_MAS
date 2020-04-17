@@ -5,7 +5,8 @@ public class Agent extends Osoba {
     int id;
     boolean contract;
     String email;
-    List<String> contracts = new ArrayList<>(); //Atrybut powtarzalny
+    //Atrybut powtarzalny
+    List<String> contracts = new ArrayList<>();
 
     public Agent(int id,String email,String name, String surname,boolean contract,Adres address){
         super(name, surname, address);

@@ -1,12 +1,15 @@
+import java.time.LocalDate;
+import java.time.Period;
 import java.util.Date;
 import java.util.List;
 
 
 public class Pilkarz extends Osoba {
+
     public enum Sex{Male,Female}
 
     int id;
-    Date birthDate;
+    LocalDate birthDate;
     String nationality;
     double height;
     double weight;
@@ -14,13 +17,15 @@ public class Pilkarz extends Osoba {
     String club;
     double price;
     String desc;
-    //Atrybut pochodny
-    private static int countSoccer = 0;
     //Atrybut klasowy
-    private static double avgPrice = 0;
+    double fifaMultipler=0.14;
+    //Atrybut pochodny
+    private int age;
+    private int countSoccer = MainExtenstion.getCount(this.getClass());
+    private double avgPrice = 0;
     private static double biggestPrice = 0;
 
-    public Pilkarz(int id,String name, String surname,Date birthDate,Adres address,String nationality,double height,double weight,String club,Sex sex,double price,String desc){
+    public Pilkarz(int id,String name, String surname,LocalDate birthDate,Adres address,String nationality,double height,double weight,String club,Sex sex,double price,String desc){
         super(name, surname, address);
         this.id=id;
         this.birthDate=birthDate;
@@ -33,34 +38,34 @@ public class Pilkarz extends Osoba {
         this.desc=desc;
 
         countSoccer++;
-        avgPrice += (this.price - avgPrice) / countSoccer;
-        biggestPrice = price > biggestPrice ? price : biggestPrice;
+        avgPrice += (price - avgPrice) / countSoccer;
+//        biggestPrice = price > biggestPrice ? price : biggestPrice;
+        age = countAge();
     }
 
     //Metoda klasowa
-    public static double findTheBiggestPrice() {
+    public static void findTheBiggestPrice() {
         double biggestPrice = 0;
-        int count = 0;
-
-        for (Object soc : Pilkarz.getExtent(Pilkarz.class)) {
-            count++;
-            biggestPrice += ((Pilkarz) soc).price > biggestPrice ? ((Pilkarz) soc).price : biggestPrice;
+        for (Object soccer : Pilkarz.getExtent(Pilkarz.class)) {
+            biggestPrice = ((Pilkarz) soccer).price > biggestPrice ? ((Pilkarz) soccer).price : biggestPrice;
         }
         System.out.println("Najdrozszy pilkarz: " +biggestPrice+"zl");
-        return biggestPrice;
     }
 
-    public static double avgPrice(){
+    //Metoda klasowa
+    public static void avgPrice(){
         double avgPrice = 0;
         int count = 0;
-
         for (Object soc : Pilkarz.getExtent(Pilkarz.class)) {
             count++;
             avgPrice += (((Pilkarz) soc).price - avgPrice)/count;
         }
-
         System.out.println("Srednia wartosc pilkarza: " +avgPrice+"zl");
-        return avgPrice;
+//        return avgPrice;
+    }
+
+    public int countAge(){
+        return Period.between(this.birthDate, LocalDate.now()).getYears();
     }
 
     //Przeciazenie metody getAddress() z klasy Osoba
@@ -76,11 +81,12 @@ public class Pilkarz extends Osoba {
                 ", nationality='" + nationality + '\'' +
                 ", height=" + height +
                 ", weight=" + weight +
+                ", age=" + age +
                 ", sex=" + sex +
                 ", club='" + club + '\'' +
                 ", price=" + price +
                 ", desc='" + desc + '\'' +
-                ", avgPrice=" + avgPrice +
+                ", fifaMultipler='" + fifaMultipler + '\'' +
                 '}';
     }
 }

@@ -1,4 +1,5 @@
 import java.io.*;
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.Scanner;
 
@@ -20,13 +21,12 @@ public class Main {
                 Adres adres2 = new Adres("Cracow","Zakopianska","62");
                 Agent a1 = new Agent(1,"a1@mail.com","Piotr","Kwiatek",true,adres1);
                 Agent a2 = new Agent(2,"a2@mail.com","Krzysztof","Krawczyk",false,adres2);
+                Pilkarz p1 = new Pilkarz(1,"Pawel","Szczesny",LocalDate.of(1989,1,20),adres1,"Poland",190,78,"Legia", Pilkarz.Sex.Male,190000,"Dobry pilkarz");
+                Pilkarz p2 = new Pilkarz(2,"Pawel","Szczesny",LocalDate.of(1995,1,20),adres2,"Poland",190,78,"Legia", Pilkarz.Sex.Male,490000,"Dobry pilkarz");
 
                 a2.setAdres("Warsaw","Zlota","44");
                 a1.addContract("Kontrakt Fifa 2020");
                 a2.addContract("Kontrakt Fifa 2020");
-
-                Pilkarz p1 = new Pilkarz(1,"Pawel","Szczesny",new Date(),adres1,"Poland",190,78,"Legia", Pilkarz.Sex.Male,190000,"Dobry pilkarz");
-                Pilkarz p2 = new Pilkarz(2,"Pawel","Szczesny",new Date(),null,"Poland",190,78,"Legia", Pilkarz.Sex.Male,490000,"Dobry pilkarz");
 
                 ObjectOutputStream out = new ObjectOutputStream(new BufferedOutputStream(new FileOutputStream(file)));
                 MainExtenstion.write(out);
@@ -34,6 +34,8 @@ public class Main {
                 out.close();
                 Pilkarz.findTheBiggestPrice();
                 Pilkarz.avgPrice();
+                System.out.println(a1.getAddress());
+                System.out.println(p1.getAddress());
                 break;
             case 2:
                 ObjectInputStream in = new ObjectInputStream(new BufferedInputStream(new FileInputStream(file)));
