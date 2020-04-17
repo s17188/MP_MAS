@@ -1,4 +1,5 @@
 import java.util.Date;
+import java.util.List;
 
 
 public class Pilkarz extends Osoba {
@@ -13,7 +14,9 @@ public class Pilkarz extends Osoba {
     String club;
     double price;
     String desc;
+    //Atrybut pochodny
     private static int countSoccer = 0;
+    //Atrybut klasowy
     private static double avgPrice = 0;
     private static double biggestPrice = 0;
 
@@ -34,15 +37,33 @@ public class Pilkarz extends Osoba {
         biggestPrice = price > biggestPrice ? price : biggestPrice;
     }
 
+    //Metoda klasowa
     public static double findTheBiggestPrice() {
-        System.out.println("Najdrozszy pilkarz: " + biggestPrice + "zl");
+        double biggestPrice = 0;
+        int count = 0;
+
+        for (Object soc : Pilkarz.getExtent(Pilkarz.class)) {
+            count++;
+            biggestPrice += ((Pilkarz) soc).price > biggestPrice ? ((Pilkarz) soc).price : biggestPrice;
+        }
+        System.out.println("Najdrozszy pilkarz: " +biggestPrice+"zl");
         return biggestPrice;
     }
 
     public static double avgPrice(){
+        double avgPrice = 0;
+        int count = 0;
+
+        for (Object soc : Pilkarz.getExtent(Pilkarz.class)) {
+            count++;
+            avgPrice += (((Pilkarz) soc).price - avgPrice)/count;
+        }
+
+        System.out.println("Srednia wartosc pilkarza: " +avgPrice+"zl");
         return avgPrice;
     }
 
+    //Przeciazenie metody getAddress() z klasy Osoba
     public String getAddress(){
         return "Adres pilkarza: " + this.address.city + " " + this.address.street + " " + this.address.buildNo;
     }

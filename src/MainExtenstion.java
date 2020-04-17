@@ -2,45 +2,57 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 public class MainExtenstion implements Serializable {
-
-    private static List<MainExtenstion> extent = new ArrayList<>();
+    //Ekstensja, Ekst. - trwalosc
+    private static Map<Class, List<MainExtenstion>> allExtents = new Hashtable<>();
 
     public MainExtenstion(){
-        add(this);
+        List<MainExtenstion> extent = null;
+        Class theClass = this.getClass();
+
+        if (allExtents.containsKey(theClass)) {
+            extent = allExtents.get(theClass);
+        }
+        else {
+            extent = new ArrayList();
+            allExtents.put(theClass, extent);
+        }
+        extent.add(this);
     }
 
-    protected static void add(MainExtenstion myextension) {
-        extent.add(myextension);
+    public static void write(ObjectOutputStream stream) throws IOException {
+        stream.writeObject(allExtents);
     }
 
-
-    protected static void remove(MainExtenstion myextension) {
-        extent.remove(myextension);
+    public static void read(ObjectInputStream stream) throws IOException, ClassNotFoundException {
+        allExtents = (Hashtable) stream.readObject();
     }
-
-
-    public static void writeFile(ObjectOutputStream stream) throws IOException {
-        stream.writeObject(extent);
-    }
-
-
-    public static void readFile(ObjectInputStream stream) throws IOException, ClassNotFoundException {
-        extent = (ArrayList<MainExtenstion>) stream.readObject();
-    }
-
 
     public String toString() {
         return "String";
     }
 
     public static void showExtent() {
+        List<MainExtenstion> extent = null;
         System.out.println("Extent of the class: " + MainExtenstion.class.getName());
-        for (MainExtenstion myextension : extent) {
-            System.out.println(myextension);
+        for (Map.Entry<Class, List<MainExtenstion>> entry : allExtents.entrySet()) {
+            System.out.println(entry.getKey() + "/" + entry.getValue());
         }
     }
+
+    public static <T> List<T> getExtent(Class theClass) {
+        List<MainExtenstion> extent = null;
+        if (allExtents.containsKey(theClass)) {
+            extent = allExtents.get(theClass);
+//            for (MainExtenstion ext : extent) {
+//                System.out.println(theClass.toString() + " " + ext);
+//            }
+        } else {
+            System.out.println("Brak klasy: " + theClass.toString());
+        }
+        return (List<T>) extent;
+    }
+
 }

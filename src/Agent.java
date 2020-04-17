@@ -5,7 +5,7 @@ public class Agent extends Osoba {
     int id;
     boolean contract;
     String email;
-    List<String> contracts = new ArrayList<>();
+    List<String> contracts = new ArrayList<>(); //Atrybut powtarzalny
 
     public Agent(int id,String email,String name, String surname,boolean contract,Adres address){
         super(name, surname, address);
@@ -18,12 +18,18 @@ public class Agent extends Osoba {
         this.contracts.add(name);
     }
 
+    //Przeciazenie metody getAddress() z klasy Osoba
     public String getAddress(){
         return "Adres agent: " + this.address.city + " " + this.address.street + " " + this.address.buildNo;
     }
 
+    @Override
     public String toString() {
-        return id + " " + name + " " + surname + " " + contract + ", " + email + " " +(address.city==""?"Brak adresu":address.city) + " " + contracts.get(0) ;
+        return "Agent{" +
+                "id=" + id +
+                ", contract=" + contract +
+                ", email='" + email + '\'' +
+                ", contracts=" + contracts +
+                '}';
     }
-
 }
