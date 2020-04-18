@@ -1,8 +1,5 @@
 import java.time.LocalDate;
 import java.time.Period;
-import java.util.Date;
-import java.util.List;
-
 
 public class Pilkarz extends Osoba {
 
@@ -16,6 +13,7 @@ public class Pilkarz extends Osoba {
     Sex sex;
     String club;
     double price;
+    //Atrybut opcjonalny
     String desc;
     //Atrybut klasowy
     double fifaMultipler=0.14;
@@ -25,7 +23,7 @@ public class Pilkarz extends Osoba {
     private double avgPrice = 0;
     private static double biggestPrice = 0;
 
-    public Pilkarz(int id,String name, String surname,LocalDate birthDate,Adres address,String nationality,double height,double weight,String club,Sex sex,double price,String desc){
+    public Pilkarz(int id,String name, String surname,LocalDate birthDate,Adres address,String nationality,double height,double weight,String club,Sex sex,double price){
         super(name, surname, address);
         this.id=id;
         this.birthDate=birthDate;
@@ -61,14 +59,17 @@ public class Pilkarz extends Osoba {
             avgPrice += (((Pilkarz) soc).price - avgPrice)/count;
         }
         System.out.println("Srednia wartosc pilkarza: " +avgPrice+"zl");
-//        return avgPrice;
     }
 
     public int countAge(){
         return Period.between(this.birthDate, LocalDate.now()).getYears();
     }
 
-    //Przeciazenie metody getAddress() z klasy Osoba
+    public void setDesc(String desc){
+        this.desc = desc;
+    }
+
+    //Przesloniecie metody getAddress() z klasy Osoba
     public String getAddress(){
         return "Adres pilkarza: " + this.address.city + " " + this.address.street + " " + this.address.buildNo;
     }
@@ -85,7 +86,7 @@ public class Pilkarz extends Osoba {
                 ", sex=" + sex +
                 ", club='" + club + '\'' +
                 ", price=" + price +
-                ", desc='" + desc + '\'' +
+                ", desc='" + (desc == null ? "brak opisu" : desc) + '\'' +
                 ", fifaMultipler='" + fifaMultipler + '\'' +
                 '}';
     }

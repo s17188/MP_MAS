@@ -15,7 +15,6 @@ public class Osoba extends MainExtenstion {
             throw new NullPointerException("Osoba musi miec nazwisko");
         }
         this.surname=surname;
-        //Adres jako atrybut opcjonalny
         if(address == null){
             address= new Adres("","","");
         }

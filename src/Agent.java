@@ -1,3 +1,4 @@
+import java.time.LocalDate;
 import java.util.*;
 
 public class Agent extends Osoba {
@@ -18,8 +19,12 @@ public class Agent extends Osoba {
     public void addContract(String name){
         this.contracts.add(name);
     }
+    //Przeciazanie metody
+    public void addContract(String name, LocalDate date){
+        this.contracts.add(name + " Uzyskano: " + date);
+    }
 
-    //Przeciazenie metody getAddress() z klasy Osoba
+    //Przesloniecie metody getAddress() z klasy Osoba
     public String getAddress(){
         return "Adres agent: " + this.address.city + " " + this.address.street + " " + this.address.buildNo;
     }
