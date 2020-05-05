@@ -53,6 +53,12 @@ public class Main {
                 a1.addContract("Kontrakt Fifa 2020",LocalDate.of(2012,6,20));
                 a2.addContract("Kontrakt Fifa 2020");
 
+
+                Trener t1 = new Trener("Krzysztof","Papuga",adres1);
+
+                t1.createSpec("Rzut kula");
+                t1.createSpec("Testowanie");
+
                 ObjectOutputStream out = new ObjectOutputStream(new BufferedOutputStream(new FileOutputStream(file)));
                 MainExtenstion.write(out);
                 MainExtenstion.showExtent();
