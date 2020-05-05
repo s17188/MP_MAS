@@ -1,8 +1,8 @@
 public class Osoba extends MainExtenstion {
 
-    String name;
-    String surname;
-    Adres address;
+    protected String name;
+    protected String surname;
+    protected Adres address;
 
     public Osoba(String name,String surname,Adres address){
         if(name == null)

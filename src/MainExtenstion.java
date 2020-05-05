@@ -30,10 +30,6 @@ public class MainExtenstion implements Serializable {
         allExtents = (Hashtable) stream.readObject();
     }
 
-    public String toString() {
-        return "String";
-    }
-
     public static void showExtent() {
         List<MainExtenstion> extent = null;
         System.out.println("Extent of the class: " + MainExtenstion.class.getName());
@@ -46,11 +42,6 @@ public class MainExtenstion implements Serializable {
         List<MainExtenstion> extent = null;
         if (allExtents.containsKey(theClass)) {
             extent = allExtents.get(theClass);
-//            for (MainExtenstion ext : extent) {
-//                System.out.println(theClass.toString() + " " + ext);
-//            }
-        } else {
-            System.out.println("Brak klasy: " + theClass.toString());
         }
         return (List<T>) extent;
     }
@@ -63,8 +54,6 @@ public class MainExtenstion implements Serializable {
             for(MainExtenstion ext : extent){
                 count++;
             }
-        }else {
-            System.out.println("Brak klasy: " + theClass.toString());
         }
         return count;
     }

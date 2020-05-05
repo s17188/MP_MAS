@@ -33,6 +33,8 @@ public class Agent extends Osoba {
     public String toString() {
         return "Agent{" +
                 "id=" + id +
+                ", name='" + name + '\'' +
+                ", surname='" + surname + '\'' +
                 ", contract=" + contract +
                 ", email='" + email + '\'' +
                 ", contracts=" + contracts +
