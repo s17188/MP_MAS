@@ -32,21 +32,28 @@ public class Main {
                 p2.addAttachment("22222");
                 p1.addAttachment("dddd");
 
-//                p1.addSoccerToMatch(20,2,1);
-//                p1.addSoccerToMatch(30,3,1);
+                p1.addSoccerToMatch(20,2,1,m1);
+                p2.addSoccerToMatch(30,3,1,m2);
 //                p2.addSoccerToMatch(10,1,1);
 
-                PilkarzMecz p1m = new PilkarzMecz(20,0,0,p1,m1);
-                PilkarzMecz p2m = new PilkarzMecz(20,0,0,p1,m2);
-                PilkarzMecz p3m = new PilkarzMecz(20,0,0,p2,m2);
+//                PilkarzMecz p1m = new PilkarzMecz(20,0,0,p1,m1);
+//                PilkarzMecz p2m = new PilkarzMecz(20,0,0,p1,m2);
+//                PilkarzMecz p3m = new PilkarzMecz(20,0,0,p2,m2);
 
                 Pozycja_Pilkarz pz = new Pozycja_Pilkarz("L POM","Wisla");
                 Pozycja_Pilkarz pz2 = new Pozycja_Pilkarz("N","Legia");
                 Pozycja_Pilkarz pz3 = new Pozycja_Pilkarz("P POM","Poznan");
+                Pozycja_Pilkarz pz4 = new Pozycja_Pilkarz("S POM","Poznan");
 
-                p1.addSoccerPosition(pz);
-                p2.addSoccerPosition(pz2);
-                p2.addSoccerPosition(pz3);
+//                p1.addSoccerPosition(pz);
+//                p2.addSoccerPosition(pz2);
+//                p2.addSoccerPosition(pz3);
+//                p2.addSoccerPosition(pz4);
+
+                pz.addSoccerPosition(p1);
+                pz2.addSoccerPosition(p2);
+                pz3.addSoccerPosition(p2);
+                pz4.addSoccerPosition(p2);
 
                 p1.setDesc("Dobry pilkarz");
                 a2.setAdres("Warsaw","Zlota","44");
@@ -68,9 +75,12 @@ public class Main {
                 System.out.println(a1.getAddress());
                 System.out.println(p1.getAddress());
 
-                System.out.println(p2.findSoccerQualif("Legia"));
-                System.out.println(p2.findSoccerQualif("Poznan"));
-                System.out.println(p1.findSoccerQualif("Wisla"));
+
+//                System.out.println(pz2.findSoccerQualif(1));
+//                System.out.println(p2.findSoccerQualif("Legia"));
+//                System.out.println(p2.findSoccerQualif("Poznan"));
+                System.out.println(pz.findSoccerQualif(1));
+                System.out.println(pz2.findSoccerQualif(2));
                 break;
             case 2:
                 ObjectInputStream in = new ObjectInputStream(new BufferedInputStream(new FileInputStream(file)));

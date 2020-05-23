@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Set;
 
 public class Trener extends Osoba {
+    //Kompozycja
     private List<Specjalizacja> specs = new ArrayList<>();
 
     public Trener(String name, String surname, Adres address) {

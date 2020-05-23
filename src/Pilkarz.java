@@ -8,7 +8,7 @@ public class Pilkarz extends Osoba {
 
     public enum Sex{Male,Female}
 
-    private int id;
+    public int id;
     private LocalDate birthDate;
     private String nationality;
     private double height;
@@ -25,12 +25,16 @@ public class Pilkarz extends Osoba {
     private int countSoccer = MainExtenstion.getCount(this.getClass());
     private double avgPrice = 0;
     private static double biggestPrice = 0;
+    //Checked Pilkarz - Zalacznik_Pilkarz
     //Asocjacja zwykla
     private ArrayList<Zalacznik_Pilkarz> attachment;
+    //Checked Pilkarz - PilkarzMecz - Mecz
     //Asocjacja z atrybutem
-    private ArrayList<PilkarzMecz> soccer_match;
+    public PilkarzMecz soccer_match = new PilkarzMecz(0,0,0);
+    //Checked Pilkarz - (Club)Pozycja_Pilkarz
     //Asocjacja kwalifikowana
-    private Map<String,Pozycja_Pilkarz> soccerQualif = new TreeMap<>();
+    private Pozycja_Pilkarz position;
+
 
     public Pilkarz(int id,String name, String surname,LocalDate birthDate,Adres address,String nationality,double height,double weight,String club,Sex sex,double price){
         super(name, surname, address);
@@ -44,7 +48,7 @@ public class Pilkarz extends Osoba {
         this.price=price;
         this.desc=desc;
         this.attachment = new ArrayList<Zalacznik_Pilkarz>();
-        this.soccer_match = new ArrayList<PilkarzMecz>();
+//        this.soccer_match = new ArrayList<PilkarzMecz>();
 
         countSoccer++;
         avgPrice += (price - avgPrice) / countSoccer;
@@ -72,33 +76,40 @@ public class Pilkarz extends Osoba {
         System.out.println("Srednia wartosc pilkarza: " +avgPrice+"zl");
     }
 
+    //Asocjacja zwykla - metoda dodawania zalacznika
     public void addAttachment(String url){
         Zalacznik_Pilkarz attach = new Zalacznik_Pilkarz(url,this);
         this.attachment.add(attach);
         System.out.println(this.attachment);
     }
 
-//    public void addSoccerToMatch(int playtime,int red_cards,int yellow_cards){
-//        Mecz mecz = new Mecz(LocalDate.now(),"Warszawa");
-//        PilkarzMecz match = new PilkarzMecz(playtime,red_cards,yellow_cards,this,mecz);
-//        this.soccer_match.add(match);
-//        System.out.println(this.soccer_match);
-//    }
-
-    public void addSoccerPosition(Pozycja_Pilkarz position){
-        if(!soccerQualif.containsKey(position.club)){
-            soccerQualif.put(position.club,position);
-
-            position.addPosition(this);
+    //Asocjacja z atrybutem - metoda dodawania pilkarza do meczu
+    public void addSoccerToMatch(int playtime,int red_cards,int yellow_cards,Mecz match){
+        if(!soccer_match.matchList.contains(match)){
+            soccer_match.matchList.add(match);
+            match.addSoccer(playtime,red_cards,yellow_cards,this);
         }
     }
 
-    public Pozycja_Pilkarz findSoccerQualif(String club) throws Exception{
-        if(!soccerQualif.containsKey(club)){
-            throw new Exception("Unable to find a soccer with club: " + club);
-        }
+//    //Asocjacja kwalifikowana - Pilkarz - (Club)Pozycja_Pilkarz
+//    public void addSoccerPosition(Pozycja_Pilkarz position){
+//        if(!soccerQualif.containsKey(position.club)){
+//            soccerQualif.put(position.club,position);
+//
+//            position.addPosition(this);
+//        }
+//    }
+//
+//    public Pozycja_Pilkarz findSoccerQualif(String club) throws Exception{
+//        if(!soccerQualif.containsKey(club)){
+//            throw new Exception("Unable to find a soccer with club: " + club);
+//        }
+//
+//        return soccerQualif.get(club);
+//    }
 
-        return soccerQualif.get(club);
+    public void setPosition(Pozycja_Pilkarz position) {
+        this.position=position;
     }
 
     public int countAge(){

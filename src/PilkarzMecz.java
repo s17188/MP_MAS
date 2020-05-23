@@ -1,20 +1,21 @@
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Set;
 
 public class PilkarzMecz extends MainExtenstion {
 
-    private int playtime;
-    private int red_cards;
-    private int yellow_cards;
-    private Pilkarz soccer;
-    private Mecz match;
+    public int playtime;
+    public int red_cards;
+    public int yellow_cards;
+    public Set<Pilkarz> soccerList = new HashSet<>();
+    public Set<Mecz> matchList = new HashSet<>();
 
-    public PilkarzMecz(int playtime,int red_cards, int yellow_cards,Pilkarz soccer,Mecz match){
+
+    public PilkarzMecz(int playtime,int red_cards, int yellow_cards){
         this.playtime = playtime;
         this.red_cards = red_cards;
         this.yellow_cards = yellow_cards;
-        this.soccer = soccer;
-        this.match = match;
     }
 
     @Override
@@ -23,8 +24,8 @@ public class PilkarzMecz extends MainExtenstion {
                 "playtime=" + playtime +
                 ", red_cards=" + red_cards +
                 ", yellow_cards=" + yellow_cards +
-                ", soccer=" + soccer +
-                ", match=" + match +
+                ", soccer=" + soccerList +
+                ", match=" + matchList +
                 '}';
     }
 }
