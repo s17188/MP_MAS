@@ -1,6 +1,7 @@
 import java.time.LocalDate;
 import java.time.Period;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
 
@@ -30,8 +31,8 @@ public class Pilkarz extends Osoba {
     private ArrayList<Zalacznik_Pilkarz> attachment;
     //Checked Pilkarz - PilkarzMecz - Mecz
     //Asocjacja z atrybutem
-    public PilkarzMecz soccer_match = new PilkarzMecz(0,0,0);
-    //Checked Pilkarz - (Club)Pozycja_Pilkarz
+    public List<PilkarzMecz> list_match = new ArrayList<>();
+    //Checked Pilkarz - (id)Pozycja_Pilkarz
     //Asocjacja kwalifikowana
     private Pozycja_Pilkarz position;
 
@@ -77,19 +78,45 @@ public class Pilkarz extends Osoba {
     }
 
     //Asocjacja zwykla - metoda dodawania zalacznika
-    public void addAttachment(String url){
-        Zalacznik_Pilkarz attach = new Zalacznik_Pilkarz(url,this);
-        this.attachment.add(attach);
-        System.out.println(this.attachment);
+    public void addAttachment(Zalacznik_Pilkarz zalacznik){
+        if(!attachment.contains(zalacznik)){
+            attachment.add(zalacznik);
+
+            zalacznik.addPilkarz(this);
+        }
+    }
+
+    //Asocjacja z atrybutem - metoda dodawania pilkarza do pilkarzmecz
+    public void addPilkarzMecz(PilkarzMecz pilkarzMecz){
+        if(!list_match.contains(pilkarzMecz)){
+            list_match.add(pilkarzMecz);
+        }
+    }
+
+    public void removePilkarzMecz(PilkarzMecz pilkarzMecz){
+        if(list_match.contains(pilkarzMecz)){
+            list_match.remove(pilkarzMecz);
+        }
+    }
+
+    //Asocjacja kwalifikowana - Pilkarz - (id)Pozycja_Pilkarz
+    public void setPosition(Pozycja_Pilkarz position) {
+        if(this.position != position){
+            this.position=position;
+
+            position.addSoccerPosition(this);
+        }
+
     }
 
     //Asocjacja z atrybutem - metoda dodawania pilkarza do meczu
-    public void addSoccerToMatch(int playtime,int red_cards,int yellow_cards,Mecz match){
-        if(!soccer_match.matchList.contains(match)){
-            soccer_match.matchList.add(match);
-            match.addSoccer(playtime,red_cards,yellow_cards,this);
-        }
-    }
+//    public void addSoccerToMatch(int playtime,int red_cards,int yellow_cards,Mecz match){
+//        if(!soccer_match.matchList.contains(match)){
+//            soccer_match.matchList.add(match);
+//            match.addSoccer(playtime,red_cards,yellow_cards,this);
+//        }
+//    }
+
 
 //    //Asocjacja kwalifikowana - Pilkarz - (Club)Pozycja_Pilkarz
 //    public void addSoccerPosition(Pozycja_Pilkarz position){
@@ -108,9 +135,7 @@ public class Pilkarz extends Osoba {
 //        return soccerQualif.get(club);
 //    }
 
-    public void setPosition(Pozycja_Pilkarz position) {
-        this.position=position;
-    }
+
 
     public int countAge(){
         return Period.between(this.birthDate, LocalDate.now()).getYears();
@@ -127,7 +152,7 @@ public class Pilkarz extends Osoba {
 
     @Override
     public String toString() {
-        return "Pilkarz{" +
+        String info = "Pilkarz{" +
                 "id=" + id +
                 ", birthDate=" + birthDate +
                 ", nationality='" + nationality + '\'' +
@@ -139,6 +164,17 @@ public class Pilkarz extends Osoba {
                 ", price=" + price +
                 ", desc='" + (desc == null ? "brak opisu" : desc) + '\'' +
                 ", fifaMultipler='" + fifaMultipler + '\'' +
-                '}';
+                ", pozycja='" + position.position + '\'' +
+                ", zalacznik='[";
+        for(Zalacznik_Pilkarz z:attachment){
+            info+= "" +  z.url + ",";
+        }
+        info+="]" +
+                ", mecze='[";
+        for(PilkarzMecz m:list_match){
+            info+= "Miejsce: " +  m.match.stadium + " ,Zolte kartki: " + m.yellow_cards + "," + " Czas gry: " + m.playtime;
+        }
+        info+="]";
+        return info;
     }
 }

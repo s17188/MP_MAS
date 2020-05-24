@@ -1,10 +1,16 @@
 public class Zalacznik_Pilkarz extends MainExtenstion {
-    private String url;
+    public String url;
     public Pilkarz soccer;
 
-    public Zalacznik_Pilkarz(String url,Pilkarz soccer) {
+    public Zalacznik_Pilkarz(String url) {
         this.url = url;
-        this.soccer = soccer;
+    }
+
+    public void addPilkarz(Pilkarz pilkarz){
+        if(this.soccer != pilkarz){
+            this.soccer = pilkarz;
+            pilkarz.addAttachment(this);
+        }
     }
 
     @Override

@@ -3,7 +3,7 @@ import java.util.TreeMap;
 
 public class Pozycja_Pilkarz extends MainExtenstion{
 
-    private String position;
+    public String position;
     public String club;
 //    private Pilkarz soccer;
     private Map<Integer,Pilkarz> soccerQualif = new TreeMap<>();
@@ -13,7 +13,7 @@ public class Pozycja_Pilkarz extends MainExtenstion{
         this.club=club;
     }
 
-    //Asocjacja kwalifikowana - Pilkarz - (Club)Pozycja_Pilkarz
+    //Asocjacja kwalifikowana - Pilkarz - (id)Pozycja_Pilkarz
     public void addSoccerPosition(Pilkarz soccer){
         if(!soccerQualif.containsKey(soccer.id)){
             soccerQualif.put(soccer.id,soccer);

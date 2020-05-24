@@ -28,18 +28,25 @@ public class Main {
                 Mecz m1 = new Mecz(LocalDate.now(),"Warszawa");
                 Mecz m2 = new Mecz(LocalDate.now(),"Cracow");
 
-                p1.addAttachment("asd");
-                p2.addAttachment("22222");
-                p1.addAttachment("dddd");
 
-                p1.addSoccerToMatch(20,2,1,m1);
-                p2.addSoccerToMatch(30,3,1,m2);
-//                p2.addSoccerToMatch(10,1,1);
+                //Asocjacja zwykla
+                Zalacznik_Pilkarz z1 = new Zalacznik_Pilkarz("Zalacznik1");
+                Zalacznik_Pilkarz z2 = new Zalacznik_Pilkarz("Zalacznik2");
+                Zalacznik_Pilkarz z3 = new Zalacznik_Pilkarz("Zalacznik3");
 
-//                PilkarzMecz p1m = new PilkarzMecz(20,0,0,p1,m1);
+                p1.addAttachment(z1);
+                p2.addAttachment(z2);
+                p1.addAttachment(z3);
+
+                //Asocjacja z atrybutem
+                PilkarzMecz p1m = new PilkarzMecz(30,0,0,p1,m1);
+                PilkarzMecz p2m = new PilkarzMecz(20,0,0,p1,m1);
+
 //                PilkarzMecz p2m = new PilkarzMecz(20,0,0,p1,m2);
 //                PilkarzMecz p3m = new PilkarzMecz(20,0,0,p2,m2);
 
+
+                //Asocjacja kwalifikowana
                 Pozycja_Pilkarz pz = new Pozycja_Pilkarz("L POM","Wisla");
                 Pozycja_Pilkarz pz2 = new Pozycja_Pilkarz("N","Legia");
                 Pozycja_Pilkarz pz3 = new Pozycja_Pilkarz("P POM","Poznan");
@@ -61,6 +68,7 @@ public class Main {
                 a2.addContract("Kontrakt Fifa 2020");
 
 
+                //Kompozycja
                 Trener t1 = new Trener("Krzysztof","Papuga",adres1);
 
                 t1.createSpec("Rzut kula");
@@ -70,15 +78,17 @@ public class Main {
                 MainExtenstion.write(out);
                 MainExtenstion.showExtent();
                 out.close();
-                Pilkarz.findTheBiggestPrice();
-                Pilkarz.avgPrice();
-                System.out.println(a1.getAddress());
-                System.out.println(p1.getAddress());
+//                Pilkarz.findTheBiggestPrice();
+//                Pilkarz.avgPrice();
+//                System.out.println(a1.getAddress());
+//                System.out.println(p1.getAddress());
 
 
 //                System.out.println(pz2.findSoccerQualif(1));
 //                System.out.println(p2.findSoccerQualif("Legia"));
 //                System.out.println(p2.findSoccerQualif("Poznan"));
+
+                //Asocjacja kwalifikowana zwroc pilkarza z id
                 System.out.println(pz.findSoccerQualif(1));
                 System.out.println(pz2.findSoccerQualif(2));
                 break;
