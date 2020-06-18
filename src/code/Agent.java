@@ -110,7 +110,7 @@ public class Agent extends Osoba {
                 ", contracts=" + contracts +
                 ", pilkarze='[";
         for(Pilkarz p:soccers){
-            info+= "" +  p.name + "," + p.surname;
+            info+= "" +  p.name + " " + p.surname + ",";
         }
         info+="]" +
                 ", favPilkarze='[";

@@ -112,7 +112,7 @@
                   <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="1" use-parent-layout="false"/>
                 </constraints>
                 <properties>
-                  <text value="Data"/>
+                  <text value="Data  (yyyy-MM-dd)"/>
                 </properties>
               </component>
               <component id="5ce0b" class="javax.swing.JTextField" binding="stadion">
@@ -218,7 +218,7 @@
                   <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="1" use-parent-layout="false"/>
                 </constraints>
                 <properties>
-                  <text value="Data"/>
+                  <text value="Data  (yyyy-MM-dd)"/>
                 </properties>
               </component>
               <component id="dca7" class="javax.swing.JTextField" binding="stadion2">
@@ -324,7 +324,7 @@
                   <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="1" use-parent-layout="false"/>
                 </constraints>
                 <properties>
-                  <text value="Data"/>
+                  <text value="Data  (yyyy-MM-dd)"/>
                 </properties>
               </component>
               <component id="dfe3c" class="javax.swing.JTextField" binding="stadion3">

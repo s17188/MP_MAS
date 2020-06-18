@@ -40,12 +40,17 @@ public class SoccersList {
             System.out.println("Agent " + o);
             if(o.getId() == Main.agent.getId()) {
                 header.setText("Agent " + o.getname());
-                for (Pilkarz p : listP) {
-                    if(p.agent.getId() == Main.agent.getId()){
-                        ((DefaultListModel) list1.getModel()).addElement(p.getName());
-                        pilkarzs.add(p);
-                        soccer = p;
-                    }
+//                for (Pilkarz p : listP) {
+//                    if(p.agent.getId() == Main.agent.getId()){
+//                        ((DefaultListModel) list1.getModel()).addElement(p.getName());
+//                        pilkarzs.add(p);
+//                        soccer = p;
+//                    }
+//                }
+                for (Pilkarz p : o.getSoccers()) {
+                    ((DefaultListModel) list1.getModel()).addElement(p.getName());
+                    pilkarzs.add(p);
+                    soccer = p;
                 }
             }
         }

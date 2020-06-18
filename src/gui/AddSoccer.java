@@ -10,6 +10,7 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.time.LocalDate;
+import java.util.List;
 
 public class AddSoccer {
     public JPanel mainPanel;
@@ -34,10 +35,8 @@ public class AddSoccer {
         try {
             ObjectInputStream in = new ObjectInputStream(new BufferedInputStream(new FileInputStream(Main.file)));
             MainExtenstion.read(in);
-            countId = MainExtenstion.getCount(Pilkarz.class)+1;
-        } catch (IOException exception) {
-            countId = 0;
-        } catch (ClassNotFoundException exception) {
+            countId = MainExtenstion.getCount(Pilkarz.class);
+        } catch (Exception exception) {
             countId = 0;
         }
 
@@ -57,11 +56,18 @@ public class AddSoccer {
                         Integer.parseInt(height.getText()),
                         Integer.parseInt(weight.getText()),
                         club.getText(),
-                        comboBox1.getToolTipText(),
+                        String.valueOf(comboBox1.getSelectedItem()),
                         Integer.parseInt(price.getText()));
                 soccer.setDesc(desc.getText());
 
-                Main.agent.addSoccer(soccer);
+                List<Agent> list = Agent.getExtent(Agent.class);
+
+                for(Agent o: list){
+                    System.out.println("Agent " + o);
+                    if(o.getId() == Main.agent.getId()) {
+                        o.addSoccer(soccer);
+                    }
+                }
 
                 System.out.println(soccer.toString());
 
