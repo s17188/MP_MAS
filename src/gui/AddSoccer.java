@@ -71,10 +71,11 @@ public class AddSoccer {
 
                 System.out.println(soccer.toString());
 
-                JFrame jFrame2 = new JFrame("app");
+                JFrame jFrame2 = new JFrame("Dodawanie pilkarza");
                 jFrame2.setContentPane(new AddInformation().mainPanel);
                 jFrame2.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
                 jFrame2.pack();
+                jFrame2.setLocationRelativeTo(null);
                 jFrame2.setVisible(true);
             }
         });

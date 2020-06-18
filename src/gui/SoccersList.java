@@ -92,8 +92,9 @@ public class SoccersList {
                 if(selectedItem == "Zobacz mecz"){
                     JFrame jFrame5 = new JFrame("app");
                     jFrame5.setContentPane(new SoccerMatch().mainPanel);
-                    jFrame5.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
                     jFrame5.pack();
+                    jFrame5.setSize(400,350);
+                    jFrame5.setLocationRelativeTo(null);
                     jFrame5.setVisible(true);
                 }
             }

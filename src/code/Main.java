@@ -167,10 +167,12 @@ public class Main {
                     agent = new Agent(1,"a1@mail.com","Piotr","Kwiatek",true,adresAgent);
                 }
 
-                JFrame jFrame1 = new JFrame("app");
+                JFrame jFrame1 = new JFrame("Dodawanie pilkarza");
                 jFrame1.setContentPane(new InitSoccer().mainPanel);
                 jFrame1.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
                 jFrame1.pack();
+                jFrame1.setSize(300,200);
+                jFrame1.setLocationRelativeTo(null);
                 jFrame1.setVisible(true);
                 break;
 
@@ -194,10 +196,12 @@ public class Main {
                     agent = new Agent(1,"a1@mail.com","Piotr","Kwiatek",true,adresAgent);
                 }
 
-                JFrame jFrame3 = new JFrame("app");
+                JFrame jFrame3 = new JFrame("Lista pilkarzy");
                 jFrame3.setContentPane(new SoccersList().mainPanel);
                 jFrame3.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
                 jFrame3.pack();
+                jFrame3.setSize(400,350);
+                jFrame3.setLocationRelativeTo(null);
                 jFrame3.setVisible(true);
 
 

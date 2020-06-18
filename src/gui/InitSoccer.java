@@ -29,10 +29,11 @@ public class InitSoccer {
                 initSoccerSurname = textField2.getText();
 
                 System.out.println("Name: " + initSoccerName + " Surname: " + initSoccerSurname);
-                JFrame jFrame = new JFrame("app");
+                JFrame jFrame = new JFrame("Dodawanie pilkarza");
                 jFrame.setContentPane(new AddSoccer().mainPanel);
                 jFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
                 jFrame.pack();
+                jFrame.setLocationRelativeTo(null);
                 jFrame.setVisible(true);
             }
         });

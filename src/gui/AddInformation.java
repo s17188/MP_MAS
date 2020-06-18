@@ -53,29 +53,28 @@ public class AddInformation {
                 Zalacznik_Pilkarz zalacznikOb = new Zalacznik_Pilkarz(zalacznik.getText());
                 Video_Pilkarz videoOb = new Video_Pilkarz(video.getText());
                 Pozycja_Pilkarz position = new Pozycja_Pilkarz(pozycja.getText(),AddSoccer.soccer.club);
-                LocalDate date = LocalDate.parse(dataMeczu.getText());
 
-                Mecz mecz = new Mecz(date,stadion.getText());
-
-                PilkarzMecz pilkarzmecz = new PilkarzMecz(Integer.parseInt(czasGry.getText()),Integer.parseInt(kartaCzerwona.getText()),Integer.parseInt(kartaZolta.getText()),AddSoccer.soccer,mecz);
 
                 AddSoccer.soccer.addAttachment(zalacznikOb);
                 AddSoccer.soccer.addVideo(videoOb);
                 AddSoccer.soccer.setPosition(position);
-                AddSoccer.soccer.addPilkarzMecz(pilkarzmecz);
 
                 System.out.println(AddSoccer.soccer);
+
+                if(dataMeczu.getText().length() > 0){
+                    LocalDate date = LocalDate.parse(dataMeczu.getText());
+                    Mecz mecz = new Mecz(date,stadion.getText());
+                    PilkarzMecz pilkarzmecz = new PilkarzMecz(Integer.parseInt(czasGry.getText()),Integer.parseInt(kartaCzerwona.getText()),Integer.parseInt(kartaZolta.getText()),AddSoccer.soccer,mecz);
+                }
 
                 if(dataMeczu2.getText().length() > 0){
                     LocalDate date2 = LocalDate.parse(dataMeczu2.getText());
                     Mecz mecz2 = new Mecz(date2,stadion2.getText());
-
                     PilkarzMecz pilkarzmecz2 = new PilkarzMecz(Integer.parseInt(czasgry2.getText()),Integer.parseInt(kartkaczerwona2.getText()),Integer.parseInt(kartkazolta2.getText()),AddSoccer.soccer,mecz2);
                 }
                 if(dataMeczu3.getText().length() > 0){
                     LocalDate date3 = LocalDate.parse(dataMeczu3.getText());
                     Mecz mecz3 = new Mecz(date3,stadion3.getText());
-
                     PilkarzMecz pilkarzmecz3 = new PilkarzMecz(Integer.parseInt(czasGry3.getText()),Integer.parseInt(kartkaCzerwona3.getText()),Integer.parseInt(kartkaZolta3.getText()),AddSoccer.soccer,mecz3);
                 }
 
@@ -89,10 +88,12 @@ public class AddInformation {
                     ex.printStackTrace();
                 }
 
-                JFrame jFrame3 = new JFrame("app");
+                JFrame jFrame3 = new JFrame("Lista pilkarzy");
                 jFrame3.setContentPane(new SoccersList().mainPanel);
                 jFrame3.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
                 jFrame3.pack();
+                jFrame3.setSize(300,400);
+                jFrame3.setLocationRelativeTo(null);
                 jFrame3.setVisible(true);
 
             }
