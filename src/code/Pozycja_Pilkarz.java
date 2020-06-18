@@ -32,10 +32,6 @@ public class Pozycja_Pilkarz extends MainExtenstion{
         return soccerQualif.get(id);
     }
 
-//    public void addPosition(Pilkarz pilkarz) {
-//        this.soccer=pilkarz;
-//    }
-
     @Override
     public String toString() {
         return "Pozycja_Pilkarz{" +

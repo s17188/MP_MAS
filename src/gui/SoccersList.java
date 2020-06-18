@@ -8,12 +8,9 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.io.BufferedInputStream;
 import java.io.FileInputStream;
-import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
-import java.util.stream.Collectors;
 
 public class SoccersList {
     public JPanel mainPanel;
@@ -34,19 +31,11 @@ public class SoccersList {
         }
 
         List<Agent> list = Agent.getExtent(Agent.class);
-        List<Pilkarz> listP = Pilkarz.getExtent(Pilkarz.class);
 
         for(Agent o: list){
             System.out.println("Agent " + o);
             if(o.getId() == Main.agent.getId()) {
                 header.setText("Agent " + o.getname());
-//                for (Pilkarz p : listP) {
-//                    if(p.agent.getId() == Main.agent.getId()){
-//                        ((DefaultListModel) list1.getModel()).addElement(p.getName());
-//                        pilkarzs.add(p);
-//                        soccer = p;
-//                    }
-//                }
                 for (Pilkarz p : o.getSoccers()) {
                     ((DefaultListModel) list1.getModel()).addElement(p.getName());
                     pilkarzs.add(p);

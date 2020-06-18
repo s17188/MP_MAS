@@ -7,9 +7,6 @@ public class PilkarzMecz extends MainExtenstion {
     public int yellow_cards;
     public Pilkarz soccer;
     public Mecz match;
-//    public Set<Pilkarz> soccerList = new HashSet<>();
-//    public Set<Mecz> matchList = new HashSet<>();
-
 
     public PilkarzMecz(int playtime,int red_cards, int yellow_cards,Pilkarz soccer,Mecz match){
         this.playtime = playtime;

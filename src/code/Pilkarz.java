@@ -6,9 +6,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Pilkarz extends Osoba {
-
-
-
     public enum Sex{Male,Female}
 
     public int id;
@@ -55,11 +52,9 @@ public class Pilkarz extends Osoba {
         this.desc=desc;
         this.attachment = new ArrayList<Zalacznik_Pilkarz>();
         this.videos = new ArrayList<Video_Pilkarz>();
-//        this.soccer_match = new ArrayList<PilkarzMecz>();
 
         countSoccer++;
         avgPrice += (price - avgPrice) / countSoccer;
-//        biggestPrice = price > biggestPrice ? price : biggestPrice;
         age = countAge();
     }
 
@@ -141,34 +136,6 @@ public class Pilkarz extends Osoba {
         }
 
     }
-
-    //Asocjacja z atrybutem - metoda dodawania pilkarza do meczu
-//    public void addSoccerToMatch(int playtime,int red_cards,int yellow_cards,Mecz match){
-//        if(!soccer_match.matchList.contains(match)){
-//            soccer_match.matchList.add(match);
-//            match.addSoccer(playtime,red_cards,yellow_cards,this);
-//        }
-//    }
-
-
-//    //Asocjacja kwalifikowana - Pilkarz - (Club)Pozycja_Pilkarz
-//    public void addSoccerPosition(Pozycja_Pilkarz position){
-//        if(!soccerQualif.containsKey(position.club)){
-//            soccerQualif.put(position.club,position);
-//
-//            position.addPosition(this);
-//        }
-//    }
-//
-//    public Pozycja_Pilkarz findSoccerQualif(String club) throws Exception{
-//        if(!soccerQualif.containsKey(club)){
-//            throw new Exception("Unable to find a soccer with club: " + club);
-//        }
-//
-//        return soccerQualif.get(club);
-//    }
-
-
 
     public int countAge(){
         return Period.between(this.birthDate, LocalDate.now()).getYears();

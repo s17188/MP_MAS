@@ -1,8 +1,6 @@
 package gui;
 
 import code.PilkarzMecz;
-import code.Video_Pilkarz;
-import code.Zalacznik_Pilkarz;
 
 import javax.swing.*;
 import java.awt.event.MouseAdapter;

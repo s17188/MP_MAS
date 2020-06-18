@@ -1,16 +1,8 @@
 package gui;
 
-import code.Main;
-import code.MainExtenstion;
-import code.Pilkarz;
-
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.BufferedInputStream;
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.io.ObjectInputStream;
 
 
 public class InitSoccer {
