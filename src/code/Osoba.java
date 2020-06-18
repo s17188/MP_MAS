@@ -1,3 +1,5 @@
+package code;
+
 public class Osoba extends MainExtenstion {
 
     protected String name;

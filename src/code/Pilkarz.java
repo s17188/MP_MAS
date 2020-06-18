@@ -1,43 +1,48 @@
+package code;
+
 import java.time.LocalDate;
 import java.time.Period;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
-import java.util.TreeMap;
 
 public class Pilkarz extends Osoba {
+
+
 
     public enum Sex{Male,Female}
 
     public int id;
-    private LocalDate birthDate;
-    private String nationality;
-    private double height;
-    private double weight;
-    private Sex sex;
+    public LocalDate birthDate;
+    public String nationality;
+    public double height;
+    public double weight;
+    public String sex;
     public String club;
-    private double price;
+    public double price;
     //Atrybut opcjonalny
-    private String desc;
+    public String desc;
     //Atrybut klasowy
-    private double fifaMultipler=0.14;
+    public double fifaMultipler=0.14;
     //Atrybut pochodny
-    private int age;
-    private int countSoccer = MainExtenstion.getCount(this.getClass());
-    private double avgPrice = 0;
-    private static double biggestPrice = 0;
+    public int age;
+    public int countSoccer = MainExtenstion.getCount(this.getClass());
+    public double avgPrice = 0;
+    public static double biggestPrice = 0;
     //Checked Pilkarz - Zalacznik_Pilkarz
     //Asocjacja zwykla
-    private ArrayList<Zalacznik_Pilkarz> attachment;
+    public ArrayList<Zalacznik_Pilkarz> attachment;
     //Checked Pilkarz - PilkarzMecz - Mecz
     //Asocjacja z atrybutem
     public List<PilkarzMecz> list_match = new ArrayList<>();
     //Checked Pilkarz - (id)Pozycja_Pilkarz
     //Asocjacja kwalifikowana
-    private Pozycja_Pilkarz position;
+    public Pozycja_Pilkarz position;
+    public List<Favourite_Pilkarz> list_fav_soccers = new ArrayList<>();
+    public ArrayList<Video_Pilkarz> videos;
+    public Agent agent;
 
 
-    public Pilkarz(int id,String name, String surname,LocalDate birthDate,Adres address,String nationality,double height,double weight,String club,Sex sex,double price){
+    public Pilkarz(int id, String name, String surname, LocalDate birthDate, Adres address, String nationality, double height, double weight, String club, String sex, double price){
         super(name, surname, address);
         this.id=id;
         this.birthDate=birthDate;
@@ -49,6 +54,7 @@ public class Pilkarz extends Osoba {
         this.price=price;
         this.desc=desc;
         this.attachment = new ArrayList<Zalacznik_Pilkarz>();
+        this.videos = new ArrayList<Video_Pilkarz>();
 //        this.soccer_match = new ArrayList<PilkarzMecz>();
 
         countSoccer++;
@@ -86,6 +92,21 @@ public class Pilkarz extends Osoba {
         }
     }
 
+    public void addVideo(Video_Pilkarz video_pilkarz) {
+        if(!videos.contains(video_pilkarz)){
+            videos.add(video_pilkarz);
+
+            video_pilkarz.addPilkarz(this);
+        }
+    }
+
+    public void addPilkarz(Agent agent){
+        if(this.agent != agent){
+            this.agent = agent;
+            agent.addSoccer(this);
+        }
+    }
+
     //Asocjacja z atrybutem - metoda dodawania pilkarza do pilkarzmecz
     public void addPilkarzMecz(PilkarzMecz pilkarzMecz){
         if(!list_match.contains(pilkarzMecz)){
@@ -96,6 +117,18 @@ public class Pilkarz extends Osoba {
     public void removePilkarzMecz(PilkarzMecz pilkarzMecz){
         if(list_match.contains(pilkarzMecz)){
             list_match.remove(pilkarzMecz);
+        }
+    }
+
+    public void addFavSoccer(Favourite_Pilkarz favSoccer){
+        if(!list_fav_soccers.contains(favSoccer)){
+            list_fav_soccers.add(favSoccer);
+        }
+    }
+
+    public void removeFavSoccer(Favourite_Pilkarz favSoccer){
+        if(list_fav_soccers.contains(favSoccer)){
+            list_fav_soccers.remove(favSoccer);
         }
     }
 
@@ -150,10 +183,24 @@ public class Pilkarz extends Osoba {
         return "Adres pilkarza: " + this.address.city + " " + this.address.street + " " + this.address.buildNo;
     }
 
+    public int getId(){
+        return this.id;
+    }
+
+    public Agent getAgent(){
+        return agent;
+    }
+
+    public String getName(){
+        return name + " " + surname;
+    }
+
     @Override
     public String toString() {
         String info = "Pilkarz{" +
                 "id=" + id +
+                ", name=" + name +
+                ", surname=" + surname +
                 ", birthDate=" + birthDate +
                 ", nationality='" + nationality + '\'' +
                 ", height=" + height +
@@ -164,10 +211,16 @@ public class Pilkarz extends Osoba {
                 ", price=" + price +
                 ", desc='" + (desc == null ? "brak opisu" : desc) + '\'' +
                 ", fifaMultipler='" + fifaMultipler + '\'' +
-                ", pozycja='" + position.position + '\'' +
+                ", pozycja='" + (position == null ? "Brak pozycji" : position.position) + '\'' +
+                ", agent='" + (agent == null ? "Brak agenta" : agent) + '\'' +
                 ", zalacznik='[";
         for(Zalacznik_Pilkarz z:attachment){
             info+= "" +  z.url + ",";
+        }
+        info+="]" +
+                ", wideo='[";
+        for(Video_Pilkarz v:videos){
+            info+= "" +  v.url + ",";
         }
         info+="]" +
                 ", mecze='[";

@@ -1,3 +1,5 @@
+package code;
+
 public class Adres extends MainExtenstion{
 
     String city,street,buildNo;

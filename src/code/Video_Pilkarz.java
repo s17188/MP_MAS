@@ -1,21 +1,23 @@
-public class Zalacznik_Pilkarz extends MainExtenstion {
+package code;
+
+public class Video_Pilkarz extends MainExtenstion {
     public String url;
     public Pilkarz soccer;
 
-    public Zalacznik_Pilkarz(String url) {
+    public Video_Pilkarz(String url) {
         this.url = url;
     }
 
     public void addPilkarz(Pilkarz pilkarz){
         if(this.soccer != pilkarz){
             this.soccer = pilkarz;
-            pilkarz.addAttachment(this);
+            pilkarz.addVideo(this);
         }
     }
 
     @Override
     public String toString() {
-        return "Zalacznik_Pilkarz{" +
+        return "Video_Pilkarz{" +
                 "url='" + url + '\'' +
                 ", soccer=" + soccer +
                 '}';
